@@ -73,7 +73,7 @@ The project uses a `Makefile` for streamlined compilation. To build the executab
       make
       ```
       or
-       ```bash
+      ```bash
       mingw32-make
       ```
       **Note:** `mbo.csv` is an input data file, not part of the compilation process managed by the `Makefile`.
