@@ -45,15 +45,19 @@ The assignment specifies particular rules for processing certain MBO actions to 
 
 The project uses a `Makefile` for streamlined compilation. Ensure you have MinGW or MSYS2 installed, with `g++` and `make` (or `mingw32-make`) added to your system's PATH.
 
-   a. **Open Terminal:** Navigate to the project root (`cd C:\path\to\your\project`).
-   b. **Build:** Execute `mingw32-make` (or `make`).
+   a. **Open Terminal:** Navigate to the project root (e.g., `cd C:\path\to\your\project`).
+   b. **Build:** Execute the `make` command:
       ```bash
       mingw32-make
+      # Or, if 'make' is directly in your PATH:
+      # make
       ```
       This command triggers the compilation of `reconstruction.cpp` into an object file (`reconstruction.o`), followed by linking `reconstruction.o` with necessary libraries to create the final executable, `reconstruction_aman.exe`. This standard process allows for efficient incremental builds.
    c. **Clean (Optional):** Remove generated build artifacts (`.o` files and `.exe`).
       ```bash
       mingw32-make clean
+      # Or:
+      # make clean
       ```
 
 5. Usage
@@ -63,10 +67,8 @@ The project uses a `Makefile` for streamlined compilation. Ensure you have MinGW
       ./reconstruction_aman.exe mbo.csv
       ```
       **Note:** `mbo.csv` is an input data file, not part of the compilation process managed by the `Makefile`.
-   b. **Save Output:** Redirect standard output to a file to capture the reconstructed MBP-10 data. By default, the output will be saved to `output.csv`.
-      ```bash
-      ./reconstruction_aman.exe mbo.csv > mbp_output.csv
-      ```
+   b. **Save Output:** Redirect standard output to a file to capture the reconstructed MBP-10 data. By default, the output will be saved to `output.csv`. To redirect to a custom file (e.g., `mbp_output.csv`):
+     
       Ensure `mbo.csv` is in the execution directory or provide its full path.
 
 6. Technical Implementation Details & Optimizations
@@ -123,5 +125,3 @@ Performance is paramount for this task. The following sections detail the archit
    d. **Future Optimizations:**
       - For even greater performance in extremely high-throughput scenarios, custom fixed-size allocators for `std::list` nodes within `Book` or a completely custom order book data structure that avoids dynamic allocations (e.g., using arrays and indices) could be explored to minimize cache misses and allocation overhead.
       - While `std::map` offers `O(log N)`, a `std::unordered_map` for price levels could offer `O(1)` average case, but would lose sorted order, requiring a separate mechanism to retrieve top 10 levels. This trade-off wasn't taken to prioritize simplicity and direct `std::map` benefits for sorted access.
-
----
