@@ -68,14 +68,30 @@ The project uses a `Makefile` for streamlined compilation. To build the executab
       ```
 
 5. Usage
-
-   a. **Execute the Program:** Run the compiled executable, passing the MBO data file (`mbo.csv`) as a command-line argument.
+    a. **Compile the Program:** Run the code, for compilation.
+      ```bash
+      make
+      ```
+      or
+       ```bash
+      mingw32-make
+      ```
+      **Note:** `mbo.csv` is an input data file, not part of the compilation process managed by the `Makefile`.
+   b. **Execute the Program:** Run the compiled executable, passing the MBO data file (`mbo.csv`) as a command-line argument.
       ```bash
       ./reconstruction_aman.exe mbo.csv
       ```
       **Note:** `mbo.csv` is an input data file, not part of the compilation process managed by the `Makefile`.
-   b. **Save Output:** Redirect standard output to a file to capture the reconstructed MBP-10 data. By default, the output will be saved to `output.csv`. To redirect to a custom file (e.g., `mbp_output.csv`):
- 
+   c. **Save Output:** Redirect standard output to a file to capture the reconstructed MBP-10 data. By default, the output will be saved to `output.csv`. To redirect to a custom file (e.g., `mbp_output.csv`):
+      ```bash
+      ./reconstruction_aman.exe mbo.csv > mbp_output.csv
+      ```
+      Ensure `mbo.csv` is in the execution directory or provide its full path.
+
+    **To run directly to create exe file :** To create exe file from cmd 
+      ```bash
+      g++ reconstruction.cpp -o reconstruction_aman.exe -std=c++17 -Wall -O3 -flto -march=native
+      ```
       Ensure `mbo.csv` is in the execution directory or provide its full path.
 
 6. Technical Implementation Details & Optimizations
